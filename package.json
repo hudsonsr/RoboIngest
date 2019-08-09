@@ -1,0 +1,22 @@
+{
+  "name": "roboingest",
+  "version": "1.0.0",
+  "description": "Sistema para analizar video, trazendo as informações de black e criando um arquivo XML para ingest no Floripa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hudsonsr/RoboIngest.git"
+  },
+  "keywords": [
+    "9c:c9:77:39:76:cd:fe:a1:67:95:06:8f:88:8d:2c:da"
+  ],
+  "author": "Hudson Ribeiro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hudsonsr/RoboIngest/issues"
+  },
+  "homepage": "https://github.com/hudsonsr/RoboIngest#readme"
+}
