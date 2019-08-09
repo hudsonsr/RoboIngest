@@ -59,3 +59,6 @@ typings/
 
 # next.js build output
 .next
+
+#arquivo JSON com conteudo importado do excel
+./content.json
