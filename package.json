@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/hudsonsr/RoboIngest#readme",
   "dependencies": {
+    "readline-sync": "^1.4.10",
     "xlsx": "^0.15.0"
   }
 }
