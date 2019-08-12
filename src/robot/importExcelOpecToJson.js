@@ -56,13 +56,13 @@ async function importExcelOpecToJson(caminhoArquivoExcel){
       return false;
     }
   }
+
   function inicioDados(linhas){
     if (linhas.__EMPTY == 'DIG') return true;
     return false;
   }
 
   function RetornaJsonToContent(content,jsonSheet){
-    
     try{
       var processaElemento = false;
       var linhas='';
