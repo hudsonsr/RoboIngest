@@ -44,15 +44,14 @@ function moverArquivo(pathArquivoOriginal, pathDestino){
         try{
             fs.rename(pathArquivoOriginal, `${pathDestino}\\${nomeArquivoComExtensao}` , function (err) {
                 if (err){
-                    return reject(`Erro ao mover arquivo: ${pathArquivoOriginal}`);
+                     reject(`Erro ao mover arquivo: ${pathArquivoOriginal}`);
                 } else {
                     resolve(`Arquivo ${pathArquivoOriginal} movido com sucesso.`);
                 }
             });  
         } catch(err){
-            return reject(`Erro ao mover arquivo: ${pathArquivoOriginal}`);
-        }
-        
+             reject(`Erro ao mover arquivo: ${pathArquivoOriginal}`);
+        }           
     });   
 }
 

@@ -2,6 +2,7 @@ const fs = require('fs');
 const XLSX = require('xlsx');
 const util = require('util');
 const state = require('../util/State');
+const Paths = require('../paths');
 const { moverArquivo } = require('../util/manipulaArquivo');
 
 async function importExcelOpecToJson(caminhoArquivoExcel) {
@@ -22,9 +23,10 @@ async function importExcelOpecToJson(caminhoArquivoExcel) {
     })();
     console.log(`Total de registro: ${content.materiais.length}`);
     state.save(content);
-    await moverArquivo(path, Paths.PATH_ARQUIVO_EXCEL_PROCESSADO)
+    await moverArquivo(caminhoArquivoExcel, Paths.PATH_ARQUIVO_EXCEL_PROCESSADO)
   } catch (err) { 
-    
+    console.log(caminhoArquivoExcel);
+    console.log(err);
   }
 
   function retornaConteudo(objeto) {
