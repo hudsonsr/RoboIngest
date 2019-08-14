@@ -4,7 +4,7 @@
  const PATH_BASE_BACK = '../../../../Videos/novo/';
  const PATH_ARQUIVO_EXCEL = 'C:\\Users\\hudsons\\arquivoOpec';
  const PATH_ARQUIVO_EXCEL_PROCESSADO = `${PATH_ARQUIVO_EXCEL}\\processado`;
- const PATH_VIDEO_BASE = 'C:/Users/hudsons/Videos/novo';
+ const PATH_VIDEO_BASE = 'C:\\Users\\hudsons\\Videos\\novo';
  //const PATH_VIDEO_BASE = 'C:\\Users\\hudsons\\Videos\\novo';
  const PATH_ARQUIVO_BLACK = PATH_VIDEO_BASE+'\\arquivo';
 

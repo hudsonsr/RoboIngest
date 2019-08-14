@@ -1,6 +1,4 @@
 const fs = require('fs');
-const util = require('util');
-const promissify = 
 //const Paths = require('../paths');
 
 function extrairArquivo(Caminho){
@@ -76,15 +74,15 @@ async function copiarArquivo(pathArquivoOriginal, pathDestino){
     });
 }
 
-async function escreverArquivoUtf8(contentFilePath,contentString, ){
-    return await fs.writeFileSync(contentFilePath,contentString, 'utf-8');
+async function escreverArquivo(contentFilePath,contentString, encoding){
+    return await fs.writeFileSync(contentFilePath,contentString, encoding);
 }
 
-async function lerArquivoUtf8(contentFilePath){
-    return await fs.readFileSync(contentFilePath,'utf-8'); 
+async function lerArquivo(contentFilePath, encoding){
+    return await fs.readFileSync(contentFilePath, encoding); 
 }
- 
+
 async function arquivoExiste(contentFilePath){
-    return await fs.statSync(contentFilePath);
+    return await fs.existsSync(contentFilePath);
 }
-module.exports =  { arquivoExiste, lerArquivoUtf8, escreverArquivoUtf8, moverArquivo, extrairTipoArquivo, extrairArquivoComExtensao, copiarArquivo };
+module.exports =  { arquivoExiste, lerArquivo, escreverArquivo, moverArquivo, extrairTipoArquivo, extrairArquivoComExtensao, copiarArquivo };
