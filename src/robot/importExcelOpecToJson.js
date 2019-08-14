@@ -1,7 +1,9 @@
 const fs = require('fs');
 const XLSX = require('xlsx');
 const util = require('util');
-const state = require('./State');
+const state = require('../util/State');
+const Paths = require('../paths');
+const { moverArquivo } = require('../util/manipulaArquivo');
 
 async function importExcelOpecToJson(caminhoArquivoExcel) {
     try {
@@ -11,7 +13,7 @@ async function importExcelOpecToJson(caminhoArquivoExcel) {
     let jsonSheet = XLSX.utils.sheet_to_json(wb.Sheets.Sheet1);
     
     var content = {};
-     content = await state.load(); 
+    content = await state.load(); 
 
     if (!content.materiais) content.materiais = [];
     console.log(`registro remanescentes: ${content.materiais.length}`);
@@ -21,8 +23,10 @@ async function importExcelOpecToJson(caminhoArquivoExcel) {
     })();
     console.log(`Total de registro: ${content.materiais.length}`);
     state.save(content);
+    await moverArquivo(caminhoArquivoExcel, Paths.PATH_ARQUIVO_EXCEL_PROCESSADO)
   } catch (err) { 
-    
+    console.log(caminhoArquivoExcel);
+    console.log(err);
   }
 
   function retornaConteudo(objeto) {
@@ -43,15 +47,14 @@ async function importExcelOpecToJson(caminhoArquivoExcel) {
     };
   }
 
-  function registroNaoExiste(content, codigoMaterial) {
+  function registroExiste(content, codigoMaterial) {
     var result = content.materiais.filter(function (item) {
       return item["MATERIAL"] == codigoMaterial;
     });
     if (result.length == 0) {
-      return true;
-    } else {
       return false;
-    }
+    } 
+    return true;
   }
 
   function inicioDados(linhas) {
@@ -67,7 +70,7 @@ async function importExcelOpecToJson(caminhoArquivoExcel) {
         linhas = JSON.stringify(tabela, 2, 2)
         linhas = JSON.parse(linhas);
         if (processaElemento) {
-          if (registroNaoExiste(content, retornaConteudo(linhas.__EMPTY_1))) {
+          if (!registroExiste(content, retornaConteudo(linhas.__EMPTY_1))) {
             content.materiais.push(retornaRegistroJSON(linhas));
           }
         } else {
