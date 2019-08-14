@@ -22,7 +22,11 @@
   "dependencies": {
     "chokidar": "^3.0.2",
     "fs": "0.0.1-security",
+    "lodash": "^4.17.15",
     "readline-sync": "^1.4.10",
     "xlsx": "^0.15.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
   }
 }
