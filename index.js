@@ -1,24 +1,39 @@
 const chokidar = require('chokidar');
-const Tipos = require('./src/paths.js');
-const watcherVideoOriginal = chokidar.watch(Tipos.PATH_ARQUIVO_EXCEL, {ignored: /^\./, persistent: true});
+const paths = require('./src/paths.js');
+
 const processaArquivo = require('./src/robot/processaArquivo');
+const watcherArquivoOpec = chokidar.watch(paths.PATH_ARQUIVO_EXCEL, {ignored: /^\./, persistent: true});
+const watcherArquivoFloripa = chokidar.watch(paths.PATH_ARQUIVO_FLORIPA, {ignored: /^\./, persistent: true});
 
 async function Start(){
 
-    watcherVideoOriginal
-		.unwatch(`${Tipos.PATH_VIDEO_BASE}\\pronto`)
-		.unwatch(`${Tipos.PATH_ARQUIVO_EXCEL_PROCESSADO}`)
-		.unwatch(Tipos.PATH_ARQUIVO_BLACK)
+    watcherArquivoOpec
+		.unwatch(`${paths.PATH_VIDEO_BASE}\\pronto`)
+		.unwatch(`${paths.PATH_ARQUIVO_EXCEL_PROCESSADO}`)
+		.unwatch(`${paths.PATH_ARQUIVO_XML}`)
+		.unwatch(paths.PATH_ARQUIVO_BLACK)
+		.unwatch(paths.PATH_ARQUIVO_FLORIPA)
 		.on('change', function(path) {
-			console.log('watcherVideoOriginal:File', path, 'has been changed'); 
+			console.log('watcherArquivoOpec:File', path, 'has been changed'); 
             processaArquivo(path);
 		})
 		.on('add', function(path) {
-			console.log('watcherVideoOriginal:File', path, 'has been added'); 
+			console.log('watcherArquivoOpec:File', path, 'has been added'); 
 			processaArquivo(path);
 		})
-		.on('unlink', function(path) {console.log('watcherVideoOriginal:File', path, 'has been removed');})
-		.on('error', function(error) {console.error('watcherVideoOriginal:Error happened', error);})
+		.on('unlink', function(path) {console.log('watcherArquivoOpec:File', path, 'has been removed');})
+		.on('error', function(error) {console.error('watcherArquivoOpec:Error happened', error);})
+
+	watcherArquivoFloripa
+		.on('change', function(path) {
+			console.log('watcherArquivoFloripa:File', path, 'has been changed'); 
+		})
+		.on('add', function(path) {
+			console.log('watcherArquivoFloripa:File', path, 'has been added'); 
+		
+		})
+		.on('unlink', function(path) {console.log('watcherArquivoFloripa:File', path, 'has been removed');})
+		.on('error', function(error) {console.error('watcherArquivoFloripa:Error happened', error);})
 
 }
 
