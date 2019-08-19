@@ -1,5 +1,6 @@
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
+const { extrairArquivo } = require('../util/manipulaArquivo');
 const paths = require('../paths');
 
  async function detectarBlackFrame(arquivo){
@@ -12,7 +13,8 @@ const paths = require('../paths');
     }
     
     async function detectaBlackFrame(video) {
-      const { stdout, stderr } = await exec(`ffprobe -f lavfi -i "movie=${paths.PATH_BASE_BACK}${video},blackdetect[out0]" -show_entries tags=lavfi.black_start,lavfi.black_end -of default=nw=1 -v quiet > "${paths.PATH_ARQUIVO_BLACK}\\${video}.txt"`);
+      //console.log(`ffprobe -f lavfi -i "movie=\\'${video.replace(/\\/g,'\\\\')}\\',blackdetect[out0]" -show_entries tags=lavfi.black_start,lavfi.black_end -of default=nw=1 -v quiet > "${paths.PATH_ARQUIVO_BLACKFILTER}\\${extrairArquivo(video)}.txt"`);  
+      const { stdout, stderr } = await exec(`ffprobe -f lavfi -i "movie=\\'${video.replace(/\\/g,'\\\\')}\\',blackdetect[out0]" -show_entries tags=lavfi.black_start,lavfi.black_end -of default=nw=1 -v quiet > "${paths.PATH_ARQUIVO_BLACKFILTER}\\${extrairArquivo(video)}.txt"`);
       console.log(stdout);
     }
 }

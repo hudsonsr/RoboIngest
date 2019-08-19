@@ -7,15 +7,17 @@ async function save(content){
     return await escreverArquivo(contentFilePath,contentString,'utf8');  
 }
 
-async function load(){
+async function load(contentpathfile = './content.json'){
     try{
-        const fileBuffer = await lerArquivo(contentFilePath,'utf8')
+        const fileBuffer = await lerArquivo(contentpathfile,'utf8')
         const contentJson = JSON.parse(fileBuffer)
         return contentJson
     }catch(err){
         //console.log(err);
-        await escreverArquivo(contentFilePath,'{}','utf8');
-        return {}
+       if(contentFilePath!='./content.json') {
+           await escreverArquivo(contentFilePath,'{}','utf8');
+            return {}
+       }
    }
 }
 

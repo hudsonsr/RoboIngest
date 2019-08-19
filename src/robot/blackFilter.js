@@ -5,10 +5,10 @@ const paths = require('../paths');
 async function blackFilter(nomeArquivo) {
     return new Promise((resolve, reject) => {
         try{
-            fs.readFile(`${paths.PATH_ARQUIVO_BLACK}\\${nomeArquivo}`,'utf8', function(err,data){
+            fs.readFile(`${paths.PATH_ARQUIVO_BLACKFILTER}\\${nomeArquivo}`,'utf8', function(err,data){
                 if(err) {
                     console.error("Could not open file: %s", err);
-                   // return reject(err);
+                    return reject(err);
                 }
                 let retorno = data.split('\r\n');
                // console.log(retorno);

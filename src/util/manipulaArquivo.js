@@ -84,4 +84,4 @@ async function lerArquivo(contentFilePath, encoding){
 async function arquivoExiste(contentFilePath){
     return await fs.existsSync(contentFilePath);
 }
-module.exports =  { arquivoExiste, lerArquivo, escreverArquivo, moverArquivo, extrairTipoArquivo, extrairArquivoComExtensao, copiarArquivo };
+module.exports =  { arquivoExiste, lerArquivo, escreverArquivo, moverArquivo, extrairTipoArquivo, extrairArquivoComExtensao, extrairArquivo, copiarArquivo };
