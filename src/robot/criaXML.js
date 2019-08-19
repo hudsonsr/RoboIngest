@@ -9,7 +9,7 @@ const xmlOptions = {
   
 async function criaXML(nomeArquivo, contentJson){
   //console.log(contentJson);
-  //let resultado = convert.json2xml(contentJson,{compact: true, spaces: xmlOptions.spaces});
+  let resultado = convert.json2xml(contentJson,{compact: true, spaces: xmlOptions.spaces});
   //console.log(`O resultado da conversão foi: ${xmlOptions.header}\n ${resultado}`);
    return await escreverArquivo(`${paths.PATH_ARQUIVO_XML}\\${nomeArquivo}.xml`,`${xmlOptions.header}\n${resultado}`,'utf8');
 }

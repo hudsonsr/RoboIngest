@@ -62,3 +62,8 @@ typings/
 
 #arquivo JSON com conteudo importado do excel
 ./content.json
+
+#arquivo de configuração real
+./src/configs/config.js
+
+
