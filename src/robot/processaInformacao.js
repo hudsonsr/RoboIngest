@@ -57,14 +57,14 @@ async function processaInformacao() {
   }
 
   function infoVideoToJSON(infoVideo, markIn, markOut, remover = 0){
-    let { MATERIAL, TITULO, OBSERVACAO } = infoVideo;
+    let { DIG,MATERIAL, TITULO, OBSERVACAO } = infoVideo;
     return {
       video: {
-          codigo: MATERIAL,
+          codigo: DIG,
           arquivo: `${OBSERVACAO}\\${MATERIAL}_${TITULO}.mxf`,
           titulo: TITULO,
-          grupo: "Opec",
-          operador: "CHAPPIE",
+          grupo: "Comerciais",
+          operador: "automatico",
           markIn,
           markOut,
           remover
