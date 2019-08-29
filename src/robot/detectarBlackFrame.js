@@ -32,7 +32,6 @@ const paths = require('../paths');
             content.materiais.push(novo_Item);
             state.save(content);
             await detectaBlackFrame(`${OBSERVACAO}\\${arquivoVideo}`);
-            await sleep(10000 * Math.random());
             _.remove(content.materiais,(material) => {
                 return material.MATERIAL == value.MATERIAL;
             });
