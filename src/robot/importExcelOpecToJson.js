@@ -5,15 +5,16 @@ const state = require('../util/State');
 const Paths = require('../paths');
 const { moverArquivo } = require('../util/manipulaArquivo');
 
-async function importExcelOpecToJson(caminhoArquivoExcel) {
+async function importExcelOpecToJson(caminhoArquivoExcel, pathContent) {
     try {
     var buf = await fs.readFileSync(caminhoArquivoExcel);
     var wb = XLSX.read(buf, { type: 'buffer' });
  
     let jsonSheet = XLSX.utils.sheet_to_json(wb.Sheets.Sheet1);
     
+    
     var content = {};
-    content = await state.load(); 
+    content = await state.load(pathContent); 
 
     if (!content.materiais) content.materiais = [];
     console.log(`registro remanescentes: ${content.materiais.length}`);
@@ -22,11 +23,11 @@ async function importExcelOpecToJson(caminhoArquivoExcel) {
       await Retorna_JsonToContent(content, jsonSheet);
     })();
     console.log(`Total de registro: ${content.materiais.length}`);
-    state.save(content);
-    await moverArquivo(caminhoArquivoExcel, Paths.PATH_ARQUIVO_EXCEL_PROCESSADO)
+    state.save(content,pathContent);
+    await moverArquivo(caminhoArquivoExcel, Paths.PATH_ARQUIVO_EXCEL_PROCESSADO);
   } catch (err) { 
-    console.log(caminhoArquivoExcel);
-    console.log(err);
+    //console.log(caminhoArquivoExcel);
+    //console.log(err);
   }
 
   function retornaConteudo(objeto) {
@@ -43,7 +44,11 @@ async function importExcelOpecToJson(caminhoArquivoExcel) {
       "AGENCIA": retornaConteudo(linhas.__EMPTY_4),
       "DUR": retornaConteudo(linhas.__EMPTY_5),
       "OBSERVACAO": retornaConteudo(linhas.__EMPTY_6),
-      "COORDENADOR": retornaConteudo(linhas.__EMPTY_7)
+      "COORDENADOR": retornaConteudo(linhas.__EMPTY_7),
+      "ARQUIVO_EXISTE": false,
+      "ARQUIVO_PROCESSADO": false,
+      "MARKIN": 0,
+      "MARKOUT": 0
     };
   }
 

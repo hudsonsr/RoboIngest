@@ -1,5 +1,5 @@
 const fs = require('fs');
-//const Paths = require('../paths');
+const _ = require('lodash');
 
 function extrairArquivo(Caminho){
     
@@ -44,7 +44,7 @@ function moverArquivo(pathArquivoOriginal, pathDestino){
         try{
             fs.rename(pathArquivoOriginal, `${pathDestino}\\${nomeArquivoComExtensao}` , function (err) {
                 if (err){
-                     reject(`Erro ao mover arquivo: ${pathArquivoOriginal}`);
+                     reject(`Erro ao mover arquivo: ${pathArquivoOriginal} - ${err}`);
                 } else {
                     resolve(`Arquivo ${pathArquivoOriginal} movido com sucesso.`);
                 }
@@ -84,4 +84,14 @@ async function lerArquivo(contentFilePath, encoding){
 async function arquivoExiste(contentFilePath){
     return await fs.existsSync(contentFilePath);
 }
-module.exports =  { arquivoExiste, lerArquivo, escreverArquivo, moverArquivo, extrairTipoArquivo, extrairArquivoComExtensao, extrairArquivo, copiarArquivo };
+
+function existeItemNoArray( meuArray, condicao){
+    result= _.filter(meuArray, condicao) 
+    
+    if (result.length == 0) {
+        return false;
+    } 
+    return true;
+}
+
+module.exports =  { existeItemNoArray, arquivoExiste, lerArquivo, escreverArquivo, moverArquivo, extrairTipoArquivo, extrairArquivoComExtensao, extrairArquivo, copiarArquivo };

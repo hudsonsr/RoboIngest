@@ -65,5 +65,6 @@ typings/
 
 #arquivo de configuração real
 ./src/configs/config.js
-
+content.json
+arquivo.json
 

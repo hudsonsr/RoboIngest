@@ -1,15 +1,14 @@
 const { escreverArquivo, lerArquivo } = require('./manipulaArquivo');
-const contentFilePath = './content.json';
  
-async function save(content){
+async function save(content, contentFilePath = './content.json'){
     const contentString = JSON.stringify(content)
     //return await fs.writeFileSync(contentFilePath,contentString)   
     return await escreverArquivo(contentFilePath,contentString,'utf8');  
 }
 
-async function load(contentpathfile = './content.json'){
+async function load(contentFilePath = './content.json'){
     try{
-        const fileBuffer = await lerArquivo(contentpathfile,'utf8')
+        const fileBuffer = await lerArquivo(contentFilePath,'utf8')
         const contentJson = JSON.parse(fileBuffer)
         return contentJson
     }catch(err){
